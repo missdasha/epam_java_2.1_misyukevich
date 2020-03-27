@@ -3,10 +3,10 @@ package com.company.information;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Menu {
+public class PriceMenu {
     public Map<String, Double> menu;
 
-    public Menu() {
+    public PriceMenu() {
         this.menu = new HashMap<>();
 
         this.menu.put("Croissant", 2.5);

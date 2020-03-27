@@ -1,7 +1,6 @@
 package com.company.reader;
 
 import com.company.entity.Order;
-import com.company.operations.Operations;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,11 +11,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-public class RWFiles {
+public class RWOrders {
     static Logger logger = LogManager.getLogger();
     public void writeToFile(ArrayList<Order> orders) {
-        // "resources/ord.txt" ???
-        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("C:\\Users\\Пользователь\\IdeaProjects\\restaurant\\src\\orders.txt")))
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("resources/orders.txt")))
         {
             oos.writeObject(orders);
             oos.flush();
@@ -29,9 +27,9 @@ public class RWFiles {
 
     public ArrayList<Order> readFromFile() {
         ArrayList<Order> orders = new ArrayList<>();
-        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("C:\\Users\\Пользователь\\IdeaProjects\\restaurant\\src\\orders.txt")))
+        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("resources/orders.txt")))
         {
-            orders=((ArrayList<Order>)ois.readObject());
+            orders = ((ArrayList<Order>)ois.readObject());
             ois.close();
         }
         catch(Exception ex){

@@ -1,8 +1,7 @@
 package com.company.reader;
 
-import com.company.information.Menu;
+import com.company.information.PriceMenu;
 
-import javax.xml.soap.SAAJResult;
 import java.io.InputStream;
 import java.util.Scanner;
 
@@ -10,6 +9,7 @@ public class InfoReader {
     public static final String REGEX = "[0-4]";
     public static final String REGEX_NATURAL = "\\d+";
     public static final String REGEX_STRING = "\\s+";
+
     public int readInt(InputStream input){
         Scanner scanner = new Scanner(input);
         String line = scanner.nextLine();
@@ -37,14 +37,14 @@ public class InfoReader {
     }
 
     public String[] readDish(InputStream input){
-        Menu menu = new Menu();
+        PriceMenu priceMenu = new PriceMenu();
 
         Scanner scanner = new Scanner(input);
         String line = scanner.nextLine();
         line = line.trim();
         String[] dishes = line.split(REGEX_STRING);
         for(String dish : dishes) {
-            if(!menu.menu.containsKey(dish))
+            if(!priceMenu.menu.containsKey(dish))
                 return new String[0];
         }
         return dishes;

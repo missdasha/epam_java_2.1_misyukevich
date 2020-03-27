@@ -1,15 +1,19 @@
 package com.company.entity;
 
-import com.company.information.Menu;
+import com.company.information.PriceMenu;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Order implements Serializable{
     private int id;
     private ArrayList<String> dishes;
     private double total;
+    public Order() {
+        this.id = 0;
+        this.dishes = null;
+        this.total = 0;
+    }
 
     public Order(int id, ArrayList<String> dishes, double total) {
         this.id = id;
@@ -48,12 +52,28 @@ public class Order implements Serializable{
     }
 
     public void setTotal(ArrayList<String> dishes) {
-        Menu menu = new Menu();
+        PriceMenu priceMenu = new PriceMenu();
         double total = 0;
         for(String str : dishes) {
-            total += menu.menu.get(str);
+            total += priceMenu.menu.get(str);
         }
         this.total = total;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(o == this) {
+            return true;
+        }
+
+        if(!(o instanceof Order)) {
+            return false;
+        }
+
+        Order order = (Order) o;
+        return (this.total == order.total &&
+                this.id == order.id &&
+                this.dishes.equals(order.dishes));
     }
 
     @Override
